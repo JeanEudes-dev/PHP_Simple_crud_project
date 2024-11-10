@@ -45,11 +45,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
     <link rel="stylesheet" href="styles.css"> <!-- Custom CSS for additional styles -->
 </head>
 
-<body class="bg-light">
+<body class="bg-dark text-light">
 
     <!-- Container for content -->
     <div class="container my-5">
-        <h2 class="text-center mb-4">Manage My Items</h2>
+        <h2 class="text-center mb-4 text-light">Manage My Items</h2>
 
         <?php if ($alertMessage): ?>
             <div class="alert alert-<?= $alertType ?> text-center">
@@ -61,8 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
         <?php if ($items->num_rows > 0): ?>
             <a href="create_item.php" class="btn btn-primary mb-3">Create New Item</a>
 
-            <table class="table table-bordered table-striped table-hover">
-                <thead class="thead-dark">
+            <table class="table table-bordered table-light">
+                <thead>
                     <tr>
                         <th>ID</th>
                         <th>Description</th>

@@ -25,15 +25,15 @@ $items_result = $conn->query("SELECT Items.id, Items.description, Items.photo, U
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body class="bg-light">
+<body class="bg-dark">
 
     <div class="container mt-5">
-        <h2 class="text-center mb-4">Admin Dashboard</h2>
+        <h2 class="text-center mb-4  text-light">Admin Dashboard</h2>
 
         <!-- Users Management Section -->
-        <h4>Manage Users <a href='manage_users.php'>-></a></h4>
-        <table class="table table-bordered table-striped">
-            <thead class="table-dark">
+        <h4 class="text-light">Manage Users <a href='manage_users.php'>-></a></h4>
+        <table class="table table-bordered table-striped table-light">
+            <thead class="table-light">
                 <tr>
                     <th>ID</th>
                     <th>Username</th>
@@ -46,16 +46,16 @@ $items_result = $conn->query("SELECT Items.id, Items.description, Items.photo, U
                     <td><?= htmlspecialchars($user['username']) ?></td>
                     <td>
                         <a href="edit_user.php?id=<?= $user['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
-                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteUserModal" data-user-id="<?= $user['id'] ?>">Delete</button>
+                        <!-- <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteUserModal" data-user-id="<?= $user['id'] ?>">Delete</button> -->
                     </td>
                 </tr>
             <?php endwhile; ?>
         </table>
 
         <!-- Items Management Section -->
-        <h4>Manage Items <a href='manage_all_items.php'>-></a></h4>
-        <table class="table table-bordered table-striped">
-            <thead class="table-dark">
+        <h4 class="text-light">Manage Items <a href='manage_all_items.php'>-></a></h4>
+        <table class="table table-bordered table-striped table-light">
+            <thead class="table-light">
                 <tr>
                     <th>ID</th>
                     <th>Description</th>
@@ -72,7 +72,7 @@ $items_result = $conn->query("SELECT Items.id, Items.description, Items.photo, U
                     <td><?= htmlspecialchars($item['username']) ?></td>
                     <td>
                         <a href="edit_item.php?id=<?= $item['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
-                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteItemModal" data-item-id="<?= $item['id'] ?>">Delete</button>
+                        <!-- <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteItemModal" data-item-id="<?= $item['id'] ?>">Delete</button> -->
                     </td>
                 </tr>
             <?php endwhile; ?>

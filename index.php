@@ -24,13 +24,13 @@ $items = $result->get_result();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD Project - Home</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your custom styles -->
+    <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-dark">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="index.php">CRUD Project</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,8 +56,8 @@ $items = $result->get_result();
 
     <!-- Main Content Section -->
     <div class="container mt-5">
-        <h1>Welcome, <?= $_SESSION['username']; ?>!</h1> <!-- Display logged-in user's name -->
-        <p>Here is a list of all items:</p>
+        <h1 class="text-light">Welcome, <?= $_SESSION['username']; ?>!</h1> <!-- Display logged-in user's name -->
+        <p class="text-light">Here is a list of all items:</p>
 
         <!-- List of Items -->
         <div class="list-group">

@@ -36,14 +36,12 @@ $result = $conn->query("SELECT id, username, user_level FROM Users");
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body class="bg-light">
+<body class="bg-dark">
     <div class="container mt-5">
-        <h2 class="text-center mb-4">Manage Users</h2>
+        <h2 class="text-center mb-4 text-light">Manage Users</h2>
 
-        <!-- Display success or error messages -->
-        <?php if ($alertMessage): ?>
-            <div class="alert alert-<?= $alertType ?>"><?= $alertMessage ?></div>
-        <?php endif; ?>
+        <!-- Alert Message -->
+        <div id="alertMessage" class="alert d-none text-center" role="alert"></div>
 
         <!-- Create New User Link -->
         <div class="mb-3">
@@ -51,8 +49,8 @@ $result = $conn->query("SELECT id, username, user_level FROM Users");
         </div>
 
         <!-- Users Table -->
-        <table class="table table-bordered table-striped">
-            <thead class="table-dark">
+        <table class="table table-bordered table-striped table-light">
+            <thead class="thead-dark">
                 <tr>
                     <th>ID</th>
                     <th>Username</th>
@@ -62,7 +60,7 @@ $result = $conn->query("SELECT id, username, user_level FROM Users");
             </thead>
             <tbody>
                 <?php while ($user = $result->fetch_assoc()): ?>
-                    <tr>
+                    <tr id="user-<?= $user['id'] ?>">
                         <td><?= htmlspecialchars($user['id']) ?></td>
                         <td><?= htmlspecialchars($user['username']) ?></td>
                         <td><?= htmlspecialchars($user['user_level']) ?></td>
@@ -75,7 +73,7 @@ $result = $conn->query("SELECT id, username, user_level FROM Users");
             </tbody>
         </table>
         <div class="mb-3">
-            <a href="admin_dashboard.php" class="btn btn-info  float-right">Back to Dashboard</a>
+            <a href="admin_dashboard.php" class="btn btn-info float-right">Back to Dashboard</a>
         </div>
     </div>
 
@@ -98,20 +96,43 @@ $result = $conn->query("SELECT id, username, user_level FROM Users");
         </div>
     </div>
 
+    <!-- Bootstrap JS and Custom JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Handle delete confirmation
-        document.addEventListener('show.bs.modal', function(event) {
-            if (event.target.id === 'deleteModal') {
-                const button = event.relatedTarget;
-                const userId = button.getAttribute('data-user-id');
-                const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+        document.addEventListener('DOMContentLoaded', function() {
+            let userIdToDelete = null;
+            const alertMessage = document.getElementById('alertMessage');
 
-                confirmDeleteBtn.onclick = function() {
-                    // Trigger delete action within the same page, without navigating away
-                    window.location.href = `delete_user.php?id=${userId}`;
-                };
-            }
+            document.getElementById('deleteModal').addEventListener('show.bs.modal', function(event) {
+                const button = event.relatedTarget;
+                userIdToDelete = button.getAttribute('data-user-id');
+            });
+
+            document.getElementById('confirmDeleteBtn').addEventListener('click', function() {
+                if (userIdToDelete) {
+                    fetch(`delete_user.php?id=${userIdToDelete}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            // Close modal
+                            const deleteModal = bootstrap.Modal.getInstance(document.getElementById('deleteModal'));
+                            deleteModal.hide();
+
+                            // Show alert message
+                            alertMessage.textContent = data.message;
+                            alertMessage.className = `alert alert-${data.status === 'success' ? 'success' : 'danger'} d-block`;
+
+                            // Remove user row if deletion was successful
+                            if (data.status === 'success') {
+                                const userRow = document.getElementById(`user-${userIdToDelete}`);
+                                if (userRow) userRow.remove();
+                            }
+                        })
+                        .catch(() => {
+                            alertMessage.textContent = 'An error occurred while processing your request.';
+                            alertMessage.className = 'alert alert-danger d-block';
+                        });
+                }
+            });
         });
     </script>
 </body>

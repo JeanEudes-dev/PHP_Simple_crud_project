@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="styles.css"> <!-- Custom CSS -->
 </head>
 
-<body class="bg-light">
+<body class="bg-dark">
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <div class="card" style="width: 400px;">
             <div class="card-header text-center">

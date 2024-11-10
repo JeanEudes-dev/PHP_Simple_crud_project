@@ -41,8 +41,8 @@ You can view a live demo [here](#). _(Update link once deployed, or remove if no
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/yourproject.git
-   cd yourproject
+   git clone https://github.com/JeanEudes-dev/PHP_Simple_crud_project.git
+   cd PHP_Simple_crud_project
    ```
 
 2. **Setup Database**
@@ -126,6 +126,15 @@ _Include screenshots for each page if possible, showing login, item creation, an
 
 3. **Manage Items**  
    ![Manage Items](screenshots/manage_items.png)
+
+4. **Home Page**
+   ![Home Page](screenshots/home.png)
+
+5. **Registration**
+   ![Register](screenshots/register.png)
+
+6. **admin_dashboard**
+   ![Admin Dashboard](screenshots/admin_dashboard.png)
 
 ## Future Improvements
 

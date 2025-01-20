@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $error = "Username already exists!";
         } else {
             // Insert new user into the database
-            $stmt = $conn->prepare("INSERT INTO Users (username, password, level) VALUES (?, ?, 'user')");
+            $stmt = $conn->prepare("INSERT INTO Users (username, password, user_level) VALUES (?, ?, 'user')");
             $stmt->bind_param("ss", $username, $hashed_password);
             if ($stmt->execute()) {
                 $_SESSION['user_id'] = $conn->insert_id;  // Get the inserted user ID

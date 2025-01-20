@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2024 at 03:40 PM
+-- Generation Time: Jan 20, 2025 at 02:57 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,11 +39,10 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `description`, `photo`, `created_by`) VALUES
-(4, 'Thi is my item', '1731186041_BROLLYHUBm.png', 1),
-(7, 'HEllo', '1731231450_network.svg', 1),
-(8, 'MAMAMIA', '1731231469_android-chrome-192x192.png', 1),
-(9, 'NUser Item', '1731231580_BROLLYHUB.png', 4),
-(10, 'Auser Item', '1731231662_favicon-16x16.png', 2);
+(11, 'alongside with other source expressions. The keyword \'none\' must be the only source expression in the directive value', '1737376195_web.jpg', 6),
+(12, 'Coursera\'s Back-End Development Courses: Covers database management systems, SQL, and NoSQL databases.', '1737376467_web.jpg', 7),
+(13, 'Codecademy\'s Cloud Computing Courses: Provides lessons on cloud architecture, data security, and identity management.', '1737376491_ai.jpg', 7),
+(15, 'Coursera\'s Back-End Development Courses: Covers database management systems, SQL, and NoSQL databases.', '1737381004_5.png', 6);
 
 -- --------------------------------------------------------
 
@@ -63,9 +62,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `user_level`) VALUES
-(1, 'eudes', '$2y$10$9zg1p/wcKO46is4fAwxdluGdoS7wrg9gObGk6ZFZtBjOjxLdoRltG', 'admin'),
-(2, 'Auser', '$2y$10$QaT2Xji0.DjYIKoQQ5bRoel4GZkjWUpCO41yqAq8//TZ8ZxpVAIcC', 'admin'),
-(4, 'Nuser', '$2y$10$B/xXNJcSKvxzuZAvnt.YpOXhGLJC5pUG17u/EjDho22rkh.KednCS', 'user');
+(6, 'eudess', '$2y$10$Zbamd2nok4HwRNGk/WhyJ.C6E4N0sJ9hTgF8GfT23GwjM6zjrJNMi', 'user'),
+(7, 'admin', '$2y$10$/MijXPnXFgiRDBiKC9LqMeHfIrbkIqnijPOoU1ZMQNwTgLCaPxpXe', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -93,13 +91,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables

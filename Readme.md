@@ -72,7 +72,7 @@ You can view a live demo [here](#). _(Update link once deployed, or remove if no
 
 4. **Run the Application**
    - Start your server (Apache & MySQL in XAMPP).
-   - Access the application by navigating to `http://localhost/yourproject` in your browser.
+   - Access the application by navigating to `http://localhost/crud_project` in your browser.
 
 ## Project Structure
 
@@ -116,8 +116,6 @@ You can view a live demo [here](#). _(Update link once deployed, or remove if no
 
 ## Screenshots
 
-_Include screenshots for each page if possible, showing login, item creation, and admin management pages._
-
 1. **Login Page**  
    ![Login Page](screenshots/login.png)
 
@@ -138,11 +136,11 @@ _Include screenshots for each page if possible, showing login, item creation, an
 
 ## Future Improvements
 
-- **Enhanced Security**: Add measures such as CSRF tokens and better session management.
 - **Password Reset**: Provide a way for users to reset forgotten passwords.
 - **Pagination**: Improve user and item lists by paginating the display.
 - **Search and Filter**: Allow users and admins to filter items by category or keywords.
 - **Profile Management**: Enable users to manage their profile settings.
+
 
 ## License
 

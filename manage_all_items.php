@@ -10,7 +10,6 @@ if (!isset($_SESSION['user_level']) || $_SESSION['user_level'] !== 'admin') {
 
 // Retrieve all items
 $result = $conn->query("SELECT id, description, photo, created_by FROM Items");
-
 $alertMessage = '';
 $alertType = '';
 
@@ -19,16 +18,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
     $delete_id = $_POST['delete_id'];
     $stmt = $conn->prepare("DELETE FROM Items WHERE id = ?");
     $stmt->bind_param("i", $delete_id);
-
     if ($stmt->execute()) {
         echo json_encode(['status' => 'success', 'message' => 'Item deleted successfully!']);
     } else {
-        echo json_encode(['status' => 'error', 'message' => 'Error deleting item.']);
+        echo json_encode(['status' => 'error', 'message' => 'Error deleting item: ' . $conn->error]);
     }
     exit;
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,15 +40,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
 <body class="bg-dark">
     <div class="container my-5">
         <h2 class="text-center mb-4 text-light">Manage All Items</h2>
-
         <?php if ($alertMessage): ?>
             <div class="alert alert-<?= $alertType ?> text-center">
                 <?= $alertMessage ?>
             </div>
         <?php endif; ?>
-
         <div class="mb-3">
-            <a href="admin_dashboard.php" class="btn btn-info  float-right">Back to Dashboard</a>
+            <a href="admin_dashboard.php" class="btn btn-info float-right">Back to Dashboard</a>
         </div><br /><br />
         <?php if ($_SESSION['user_level'] == 'user' || $_SESSION['user_level'] == 'admin') { ?>
             <div class="mt-4">
@@ -90,7 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
             </div>
         <?php endif; ?>
     </div>
-
     <!-- Delete confirmation modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -109,42 +104,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
             </div>
         </div>
     </div>
-
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Handle delete confirmation with AJAX
-        const deleteModal = document.getElementById('deleteModal');
-        let itemIdToDelete = null;
-
-        deleteModal.addEventListener('show.bs.modal', function(event) {
-            const button = event.relatedTarget;
-            itemIdToDelete = button.getAttribute('data-item-id');
-        });
-
-        document.getElementById('confirmDeleteBtn').addEventListener('click', function() {
-            fetch('manage_all_items.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: new URLSearchParams({
-                        delete_id: itemIdToDelete
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        window.location.href = 'manage_all_items.php?delete_status=success';
-                    } else {
-                        window.location.href = 'manage_all_items.php?delete_status=error';
-                    }
-                })
-                .catch(() => {
-                    window.location.href = 'manage_all_items.php?delete_status=error';
-                });
-        });
-    </script>
+    <!-- External Scripts -->
+    <script src="scripts.js"></script>
 </body>
 
 </html>
